@@ -1,0 +1,222 @@
+# Fully synthetic sample. Every name, address, price and number below is made up.
+# No real property, owner or sale is described.
+report:
+  title: Sample Residential Valuation Summary
+  report_type: evaluation
+  effective_date: 2026-10-15
+  prepared_by: Example Valuation Services (synthetic sample)
+  intended_use: Demonstrate the report layout and the checks. Not for lending, tax or legal use.
+  intended_user: Readers of this repository
+  value_premise: Market value, as is, fee simple (analysis estimate)
+
+subject:
+  address: 412 Sample Ridge Road, Exampleton, Demo County, KY 00000
+  property_type: Single-family detached, one story
+  legal_description: Lot 12, Block B, Sample Ridge Subdivision (synthetic)
+  year_built: 1998
+  gla_sqft: 1640
+  bedrooms: 3
+  bathrooms: 2
+  lot_acres: 0.62
+  garage: 2-car attached
+  condition: C3 (average, normal wear)
+  quality: Q4 (standard construction)
+  zoning: R-1 residential (synthetic)
+  occupancy: Owner occupied (assumed)
+
+site:
+  size: 0.62 acres, about 27,000 sq ft
+  shape: Rectangular, slight rise toward the rear
+  topography: Gently sloping
+  utilities: Public water, septic, electric, broadband available
+  flood_zone: Zone X, outside the mapped flood hazard area (assumed for this sample)
+  access: Paved county road, driveway on the east side
+  easements: Typical utility easement along the front, none adverse noted
+
+improvements:
+  - { label: Foundation, value: "Poured concrete, crawl space" }
+  - { label: Exterior walls, value: "Vinyl siding" }
+  - { label: Roof, value: "Asphalt shingle, about 8 years old" }
+  - { label: Heating and cooling, value: "Heat pump, central air" }
+  - { label: Interior, value: "Drywall, laminate and carpet floors, updated kitchen counters" }
+  - { label: Other, value: "Covered rear porch, 12 x 16 storage shed" }
+
+neighborhood:
+  description: >-
+    Established residential area of single-family homes on one-half to one acre lots,
+    ten minutes from the synthetic town center. Mostly owner occupied, with stable
+    maintenance levels and no new construction in the last two years.
+  boundaries: County road to the north, creek to the south, Demo Pike to the east and west
+  factors:
+    - Schools and shopping within a 10 minute drive
+    - No adverse land uses nearby
+    - Limited supply of homes under 2,000 sq ft on larger lots
+
+market:
+  trend: stable
+  annual_price_change_pct: 2.4
+  median_days_on_market: 47
+  months_of_supply: 3.8
+  summary: >-
+    Prices rose slowly over the last 12 months. Supply is tight but buyers are
+    price sensitive, so well kept homes at the market price sell in 6 to 8 weeks.
+    Market conditions adjustments of $2,000 (comp 2) and $4,500 (comp 4) were made to the older sales.
+
+scope_of_work: >-
+  Desktop analysis of the subject using the data in this file. No inspection was made.
+  Comparable sales are synthetic records chosen for the demo. The sales comparison approach
+  carries most of the weight; the cost and income (gross rent multiplier) approaches are
+  support. Adjustments are the analyst's inputs for this sample.
+
+thresholds:
+  net_pct: 15
+  gross_pct: 25
+
+comparable_sales:
+  - id: "1"
+    address: 118 Example Lane, Exampleton
+    proximity: 0.4 mi N
+    sale_price: 214000
+    sale_date: 2026-08-14
+    data_source: Synthetic MLS record
+    gla_sqft: 1580
+    lot_acres: 0.55
+    year_built: 1995
+    condition: C3
+    bedrooms: 3
+    bathrooms: 2
+    garage: 2-car attached
+    adjustments:
+      - { label: Living area, amount: 3000 }
+      - { label: Lot size, amount: 2000 }
+    stated_adjusted_price: 219000
+  - id: "2"
+    address: 77 Sample Court, Exampleton
+    proximity: 0.9 mi E
+    sale_price: 236500
+    sale_date: 2026-06-02
+    data_source: Synthetic MLS record
+    gla_sqft: 1720
+    lot_acres: 0.70
+    year_built: 2003
+    condition: C2
+    bedrooms: 3
+    bathrooms: 2.5
+    garage: 2-car attached
+    adjustments:
+      - { label: Living area, amount: -4000 }
+      - { label: Lot size, amount: -1500 }
+      - { label: Bathrooms, amount: -2500 }
+      - { label: Age and condition, amount: -4000 }
+      - { label: Market conditions, amount: 2000 }
+    stated_adjusted_price: 226500
+  - id: "3"
+    address: 305 Placeholder Way, Exampleton
+    proximity: 1.3 mi S
+    sale_price: 205000
+    sale_date: 2026-09-20
+    data_source: Synthetic MLS record
+    gla_sqft: 1600
+    lot_acres: 0.48
+    year_built: 1992
+    condition: C4
+    bedrooms: 3
+    bathrooms: 2
+    garage: 1-car attached
+    adjustments:
+      - { label: Living area, amount: 2000 }
+      - { label: Lot size, amount: 2800 }
+      - { label: Garage, amount: 4500 }
+      - { label: Age and condition, amount: -3000 }
+    stated_adjusted_price: 211300
+  - id: "4"
+    address: 29 Demo Hollow, Exampleton
+    proximity: 1.8 mi W
+    sale_price: 228000
+    sale_date: 2026-03-27
+    data_source: Synthetic MLS record
+    gla_sqft: 1700
+    lot_acres: 0.75
+    year_built: 2001
+    condition: C3
+    bedrooms: 3
+    bathrooms: 2
+    garage: 2-car attached
+    adjustments:
+      - { label: Living area, amount: -3000 }
+      - { label: Lot size, amount: -2000 }
+      - { label: Market conditions, amount: 4500 }
+  - id: "5"
+    address: 9 Fictional Row, Exampleton
+    proximity: 2.6 mi NW
+    sale_price: 182000
+    sale_date: 2026-05-08
+    data_source: Synthetic MLS record
+    gla_sqft: 1350
+    lot_acres: 0.30
+    year_built: 1978
+    condition: C4
+    bedrooms: 2
+    bathrooms: 1
+    garage: None
+    weight: 0.5
+    adjustments:
+      - { label: Living area, amount: 14500 }
+      - { label: Lot size, amount: 6000 }
+      - { label: Bathrooms, amount: 4000 }
+      - { label: Age and condition, amount: 14000 }
+      - { label: Garage, amount: 4500 }
+      - { label: Location, amount: -3500 }
+
+cost_approach:
+  land_value: 38000
+  land_value_source: synthetic lot sales, extraction not shown
+  items:
+    - { label: Dwelling, quantity: 1640, unit: sq ft, unit_cost: 118 }
+    - { label: Attached garage, quantity: 440, unit: sq ft, unit_cost: 42 }
+    - { label: "Porch, shed and site work", quantity: 1, unit: lump sum, unit_cost: 11000 }
+  depreciation:
+    physical_pct: 22
+    functional: 0
+    external: 0
+
+income_approach:
+  monthly_market_rent: 1350
+  selected_grm: 155
+  rent_comps:
+    - { id: R1, address: 14 Rental Lane (synthetic), sale_price: 198000, monthly_rent: 1300 }
+    - { id: R2, address: 52 Lease Court (synthetic), sale_price: 221000, monthly_rent: 1425 }
+    - { id: R3, address: 3 Tenant Trail (synthetic), sale_price: 186000, monthly_rent: 1250 }
+    - { id: R4, address: 88 Landlord Loop (synthetic), sale_price: 240000, monthly_rent: 1500 }
+
+reconciliation:
+  weights:
+    sales_comparison: 0.7
+    cost: 0.2
+    income: 0.1
+  opinion_of_value: 218000
+  range_low: 211000
+  range_high: 227000
+  narrative: >-
+    The sales comparison approach is given the most weight because buyers in this market
+    compare recent sales of similar homes. Comps 1, 3 and 4 needed the smallest adjustments.
+    Comp 5 needed large adjustments, which are flagged above, so it carries half weight. The
+    cost and rent multiplier approaches indicate about $209,000 to $212,000 and pull the
+    opinion slightly below the sales indication. They are cross checks only, because buyers
+    here rarely buy for rent or price off construction cost.
+
+photos:
+  - { path: photos/front.svg, caption: "Front elevation (synthetic drawing, not a photo)" }
+  - { path: photos/street.svg, caption: "Street scene (synthetic drawing, not a photo)" }
+
+assumptions:
+  - The subject is as described in this file; no inspection was made.
+  - Title is marketable and there are no hidden easements or liens.
+  - Utilities and mechanical systems are in working order.
+  - Data in this sample is invented and is not verified against any public record.
+
+limiting_conditions:
+  - This report is for the stated use and user only.
+  - Values are estimates for a stated date and can change with the market.
+  - No environmental, structural, mold or flood review was done.
+  - The preparer has no interest in the subject, and no one is paid based on the value found.

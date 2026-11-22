@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-label="Drawing of a residential street">
+<rect width="480" height="300" fill="#dcebf7"/>
+<rect y="190" width="480" height="110" fill="#8db87a"/>
+<polygon points="150,300 330,300 262,190 218,190" fill="#8c8f96"/>
+<rect x="238" y="190" width="4" height="110" fill="#f2e6a6" transform="skewX(-2)"/>
+<rect x="20" y="130" width="110" height="65" fill="#e4d6bb"/><polygon points="10,132 75,88 140,132" fill="#7a4e3a"/>
+<rect x="350" y="140" width="110" height="55" fill="#d7cdb8"/><polygon points="340,142 405,102 470,142" fill="#6a4331"/>
+<circle cx="170" cy="165" r="22" fill="#5e9a54"/><rect x="167" y="180" width="6" height="14" fill="#6b4a32"/>
+<circle cx="320" cy="168" r="20" fill="#5e9a54"/><rect x="317" y="182" width="6" height="12" fill="#6b4a32"/>
+</svg>

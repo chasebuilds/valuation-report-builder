@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ r.report.title }}</title>
+<style>
+:root{--ink:#1d2330;--muted:#5b6475;--line:#d5d9e2;--accent:#1f4e79;--warn:#9a3412;--warnbg:#fff1e6;
+--panel:rgba(255,255,255,.72);--panelb:rgba(255,255,255,.9)}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.5 "Segoe UI",Arial,sans-serif;color:var(--ink);
+background:radial-gradient(1100px 600px at 12% -5%,#ffd9b0 0,transparent 60%),
+radial-gradient(900px 600px at 95% 8%,#f6b8c4 0,transparent 55%),
+radial-gradient(1000px 700px at 50% 105%,#b9d3f0 0,transparent 60%),#f4e9de;background-attachment:fixed}
+.wrap{max-width:1040px;margin:0 auto;padding:24px 16px 60px}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:0}
+nav a{padding:5px 12px;border-radius:999px;background:var(--panel);backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.7);color:var(--accent);text-decoration:none;font-size:12px}
+section,.banner,header.top{background:var(--panel);backdrop-filter:blur(14px) saturate(1.2);
+-webkit-backdrop-filter:blur(14px) saturate(1.2);border:1px solid rgba(255,255,255,.75);
+border-radius:16px;padding:18px 22px;margin:0 0 16px;box-shadow:0 8px 28px rgba(60,40,20,.10)}
+.banner{background:var(--warnbg);border:2px solid var(--warn);color:var(--warn);font-weight:600}
+.banner strong{display:block;text-transform:uppercase;letter-spacing:.06em;font-size:12px;margin-bottom:4px}
+h1{margin:0 0 4px;font-size:26px}
+h2{margin:0 0 10px;font-size:16px;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;
+border-bottom:1px solid var(--line);padding-bottom:6px}
+h3{margin:14px 0 6px;font-size:14px}
+.sub{color:var(--muted);margin:0}
+.value{display:flex;flex-wrap:wrap;gap:24px;align-items:baseline;margin-top:12px}
+.value .big{font-size:34px;font-weight:700;color:var(--accent)}
+.value .lbl{font-size:11px;text-transform:uppercase;color:var(--muted);letter-spacing:.05em}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:rgba(31,78,121,.08);font-weight:600}
+.kv th{width:32%;background:none;font-weight:600;color:var(--muted)}
+.grid{overflow-x:auto}
+.grid td,.grid th{text-align:right;white-space:normal}
+.grid td:first-child,.grid th:first-child{text-align:left;font-weight:600;min-width:150px}
+.grid .subj{background:rgba(31,78,121,.07)}
+.grid tr.adjustment td:first-child{font-weight:400;padding-left:18px;color:var(--muted)}
+.grid tr.total td{font-weight:700;border-top:2px solid var(--ink)}
+.flag-on{color:var(--warn);font-weight:700;background:var(--warnbg)}
+.warnlist{margin:0;padding-left:18px;color:var(--warn)}
+.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+figure{margin:0}
+figure img{width:100%;border-radius:8px;border:1px solid var(--line);display:block}
+figcaption{font-size:12px;color:var(--muted);margin-top:3px}
+.map{border:2px dashed var(--line);border-radius:10px;padding:36px 12px;text-align:center;color:var(--muted)}
+.map img{max-width:100%}
+ol,ul{margin:6px 0;padding-left:22px}
+.small{font-size:12px;color:var(--muted)}
+.num{text-align:right}
+footer{font-size:12px;color:var(--muted);text-align:center}
+@media (max-width:640px){section,.banner,header.top{padding:14px 14px}h1{font-size:21px}.value .big{font-size:27px}}
+@media print{
+body{background:#fff;font-size:11px}
+.wrap{max-width:none;padding:0}
+nav{display:none}
+section,.banner,header.top{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;
+border-radius:0;border:0;border-bottom:1px solid var(--line);padding:8px 0;margin:0 0 8px}
+.banner{border:2px solid var(--warn);padding:8px 10px}
+h2,h3{break-after:avoid}
+tr,figure{break-inside:avoid}
+.grid{overflow:visible}
+table{font-size:10px}
+th,td{padding:3px 5px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav aria-label="Sections">
+<a href="#summary">Summary</a><a href="#subject">Subject</a><a href="#area">Neighborhood and market</a>
+<a href="#photos">Photos and map</a><a href="#sales">Sales comparison</a>
+{% if r.cost_approach %}<a href="#cost">Cost</a>{% endif %}
+{% if r.income_approach %}<a href="#income">Income</a>{% endif %}
+<a href="#reconciliation">Reconciliation</a><a href="#scope">Scope and limits</a>
+</nav>
+
+<div class="banner" role="note">
+<strong>Not an appraisal. Not USPAP.</strong>
+{{ disclaimer }}
+</div>
+
+<header class="top" id="summary">
+<h1>{{ r.report.title }}</h1>
+<p class="sub">{{ r.subject.address }}</p>
+<p class="sub">{{ "Broker price opinion style summary" if r.report.report_type == "broker_price_opinion" else "Evaluation style summary" }}
+ | Effective date {{ r.report.effective_date.isoformat() }} | Prepared by {{ r.report.prepared_by }}</p>
+<div class="value">
+<div><div class="lbl">Opinion of value (analysis estimate)</div><div class="big">{{ r.reconciliation.opinion_of_value|usd }}</div></div>
+{% if r.reconciliation.range_low is not none and r.reconciliation.range_high is not none %}
+<div><div class="lbl">Range</div><div>{{ r.reconciliation.range_low|usd }} to {{ r.reconciliation.range_high|usd }}</div></div>
+{% endif %}
+<div><div class="lbl">Premise</div><div>{{ r.report.value_premise }}</div></div>
+</div>
+<table class="kv" style="margin-top:12px">
+<tr><th>Intended use</th><td>{{ r.report.intended_use }}</td></tr>
+<tr><th>Intended user</th><td>{{ r.report.intended_user }}</td></tr>
+</table>
+{% if warnings %}
+<h3>Review flags</h3>
+<ul class="warnlist">
+{% for w in warnings %}<li>{{ w }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+</header>
+
+<section id="subject">
+<h2>Subject property</h2>
+<table class="kv">
+<tr><th>Address</th><td>{{ r.subject.address }}</td></tr>
+<tr><th>Property type</th><td>{{ r.subject.property_type }}</td></tr>
+{% if r.subject.legal_description %}<tr><th>Legal description</th><td>{{ r.subject.legal_description }}</td></tr>{% endif %}
+<tr><th>Year built</th><td>{{ r.subject.year_built }}</td></tr>
+<tr><th>Gross living area</th><td>{{ r.subject.gla_sqft|num }} sq ft</td></tr>
+<tr><th>Bedrooms / baths</th><td>{{ r.subject.bedrooms }} / {{ "%g"|format(r.subject.bathrooms) }}</td></tr>
+<tr><th>Lot</th><td>{{ r.subject.lot_acres|num(2) }} acres</td></tr>
+<tr><th>Garage</th><td>{{ r.subject.garage }}</td></tr>
+<tr><th>Condition</th><td>{{ r.subject.condition }}</td></tr>
+{% if r.subject.quality %}<tr><th>Quality</th><td>{{ r.subject.quality }}</td></tr>{% endif %}
+{% if r.subject.zoning %}<tr><th>Zoning</th><td>{{ r.subject.zoning }}</td></tr>{% endif %}
+{% if r.subject.occupancy %}<tr><th>Occupancy</th><td>{{ r.subject.occupancy }}</td></tr>{% endif %}
+</table>
+<h3>Site</h3>
+<table class="kv">
+<tr><th>Size</th><td>{{ r.site.size }}</td></tr>
+{% if r.site.shape %}<tr><th>Shape</th><td>{{ r.site.shape }}</td></tr>{% endif %}
+{% if r.site.topography %}<tr><th>Topography</th><td>{{ r.site.topography }}</td></tr>{% endif %}
+{% if r.site.utilities %}<tr><th>Utilities</th><td>{{ r.site.utilities }}</td></tr>{% endif %}
+{% if r.site.flood_zone %}<tr><th>Flood zone</th><td>{{ r.site.flood_zone }}</td></tr>{% endif %}
+{% if r.site.access %}<tr><th>Access</th><td>{{ r.site.access }}</td></tr>{% endif %}
+{% if r.site.easements %}<tr><th>Easements</th><td>{{ r.site.easements }}</td></tr>{% endif %}
+</table>
+{% if r.improvements %}
+<h3>Improvements</h3>
+<table class="kv">
+{% for kv in r.improvements %}<tr><th>{{ kv.label }}</th><td>{{ kv.value }}</td></tr>
+{% endfor %}
+</table>
+{% endif %}
+</section>
+
+<section id="area">
+<h2>Neighborhood and market conditions</h2>
+<p>{{ r.neighborhood.description }}</p>
+{% if r.neighborhood.boundaries %}<p class="small">Boundaries: {{ r.neighborhood.boundaries }}</p>{% endif %}
+{% if r.neighborhood.factors %}<ul>
+{% for f in r.neighborhood.factors %}<li>{{ f }}</li>
+{% endfor %}</ul>{% endif %}
+<h3>Market conditions</h3>
+<table class="kv">
+<tr><th>Trend</th><td>{{ r.market.trend|capitalize }}</td></tr>
+{% if r.market.annual_price_change_pct is not none %}<tr><th>Annual price change</th><td>{{ "%+.1f"|format(r.market.annual_price_change_pct) }}%</td></tr>{% endif %}
+{% if r.market.median_days_on_market is not none %}<tr><th>Median days on market</th><td>{{ r.market.median_days_on_market }}</td></tr>{% endif %}
+{% if r.market.months_of_supply is not none %}<tr><th>Months of supply</th><td>{{ "%.1f"|format(r.market.months_of_supply) }}</td></tr>{% endif %}
+</table>
+<p>{{ r.market.summary }}</p>
+</section>
+
+<section id="photos" class="breakable">
+<h2>Photos and map</h2>
+{% if photos %}
+<div class="photos">
+{% for p in photos %}<figure><img src="{{ p.uri }}" alt="{{ p.caption }}"><figcaption>{{ p.caption }}</figcaption></figure>
+{% endfor %}
+</div>
+{% else %}
+<p class="small">No photos supplied.</p>
+{% endif %}
+<h3>Location map</h3>
+{% if map_uri %}
+<div class="map"><img src="{{ map_uri }}" alt="Location map"></div>
+{% else %}
+<div class="map">Map placeholder. Add a map image with the <code>map_image</code> field. No map is generated and no geocoding is done.</div>
+{% endif %}
+</section>
+
+<section id="sales" class="breakable">
+<h2>Sales comparison approach</h2>
+<div class="grid">
+<table>
+<thead><tr><th>Item</th><th class="subj">Subject</th>
+{% for c in r.comparable_sales %}<th>Comp {{ c.id }}</th>{% endfor %}
+</tr></thead>
+<tbody>
+{% for row in grid %}
+<tr class="{{ row.kind }}"><td>{{ row.label }}</td><td class="subj">{{ row.subject }}</td>
+{% for v in row.values %}<td{% if row.flags and row.flags[loop.index0] %} class="flag-on"{% endif %}>{{ v }}{% if row.flags and row.flags[loop.index0] %} (flag){% endif %}</td>{% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<p class="small">Flag levels: net adjustment over {{ "%g"|format(r.thresholds.net_pct) }}% or gross adjustment over {{ "%g"|format(r.thresholds.gross_pct) }}% of the sale price. Adjustments are analyst inputs, not market-extracted unless the narrative says so.</p>
+<p><strong>Weighted indication from sales comparison: {{ r.sales_indication|usd }}</strong></p>
+</section>
+
+{% if r.cost_approach %}
+{% set c = r.cost_approach %}
+<section id="cost">
+<h2>Cost approach</h2>
+<table>
+<thead><tr><th>Item</th><th class="num">Quantity</th><th class="num">Unit cost</th><th class="num">Cost</th></tr></thead>
+<tbody>
+{% for i in c.items %}<tr><td>{{ i.label }}</td><td class="num">{{ i.quantity|num }} {{ i.unit }}</td><td class="num">{{ i.unit_cost|usd }}</td><td class="num">{{ i.total|usd }}</td></tr>
+{% endfor %}
+<tr><td colspan="3"><strong>Replacement cost new</strong></td><td class="num"><strong>{{ c.replacement_cost_new|usd }}</strong></td></tr>
+<tr><td colspan="3">Physical depreciation ({{ "%g"|format(c.depreciation.physical_pct) }}%)</td><td class="num">{{ (-c.physical_depreciation)|usd }}</td></tr>
+<tr><td colspan="3">Functional obsolescence</td><td class="num">{{ (-c.depreciation.functional)|usd }}</td></tr>
+<tr><td colspan="3">External obsolescence</td><td class="num">{{ (-c.depreciation.external)|usd }}</td></tr>
+<tr><td colspan="3">Depreciated improvements</td><td class="num">{{ c.depreciated_improvements|usd }}</td></tr>
+<tr><td colspan="3">Land value{% if c.land_value_source %} ({{ c.land_value_source }}){% endif %}</td><td class="num">{{ c.land_value|usd }}</td></tr>
+<tr><td colspan="3"><strong>Indicated value, cost approach</strong></td><td class="num"><strong>{{ c.indicated_value|usd }}</strong></td></tr>
+</tbody>
+</table>
+</section>
+{% endif %}
+
+{% if r.income_approach %}
+{% set inc = r.income_approach %}
+<section id="income">
+<h2>Income approach (gross rent multiplier)</h2>
+<table>
+<thead><tr><th>Rental comp</th><th>Address</th><th class="num">Sale price</th><th class="num">Monthly rent</th><th class="num">GRM</th></tr></thead>
+<tbody>
+{% for rc in inc.rent_comps %}<tr><td>{{ rc.id }}</td><td>{{ rc.address }}</td><td class="num">{{ rc.sale_price|usd }}</td><td class="num">{{ rc.monthly_rent|usd }}</td><td class="num">{{ "%.1f"|format(rc.grm) }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+<p>GRM range {{ "%.1f"|format(inc.grm_low) }} to {{ "%.1f"|format(inc.grm_high) }}, median {{ "%.1f"|format(inc.grm_median) }}. Selected GRM {{ "%.1f"|format(inc.selected_grm) }}.</p>
+<p><strong>Indicated value: {{ inc.monthly_market_rent|usd }} monthly market rent x {{ "%.1f"|format(inc.selected_grm) }} = {{ inc.indicated_value|usd }}</strong></p>
+</section>
+{% endif %}
+
+<section id="reconciliation">
+<h2>Reconciliation</h2>
+<table>
+<thead><tr><th>Approach</th><th class="num">Indicated value</th><th class="num">Weight</th></tr></thead>
+<tbody>
+{% for key, val in indications.items() %}<tr><td>{{ approach_names[key] }}</td><td class="num">{{ val|usd }}</td><td class="num">{{ (r.reconciliation.weights[key] * 100)|round|int }}%</td></tr>
+{% endfor %}
+<tr><td><strong>Weighted value</strong></td><td class="num"><strong>{{ r.weighted_value|usd }}</strong></td><td></td></tr>
+<tr><td><strong>Opinion of value (analysis estimate)</strong></td><td class="num"><strong>{{ r.reconciliation.opinion_of_value|usd }}</strong></td><td></td></tr>
+</tbody>
+</table>
+<p>{{ r.reconciliation.narrative }}</p>
+</section>
+
+<section id="scope" class="breakable">
+<h2>Scope of work</h2>
+<p>{{ r.scope_of_work }}</p>
+<h2 style="margin-top:18px">Assumptions and limiting conditions</h2>
+{% if r.assumptions %}<h3>Assumptions</h3><ol>
+{% for a in r.assumptions %}<li>{{ a }}</li>
+{% endfor %}</ol>{% endif %}
+{% if r.limiting_conditions %}<h3>Limiting conditions</h3><ol>
+{% for a in r.limiting_conditions %}<li>{{ a }}</li>
+{% endfor %}</ol>{% endif %}
+<h3>Not a USPAP appraisal</h3>
+<p>{{ disclaimer }} The preparer of this report does not certify compliance with USPAP, and no signed appraiser certification is included.</p>
+</section>
+
+<footer>{{ r.report.prepared_by }} | Generated by Chase Builds valuation-report-builder | {{ disclaimer }}</footer>
+</div>
+</body>
+</html>

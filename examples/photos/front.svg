@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-label="Drawing of a one story house">
+<rect width="480" height="300" fill="#cfe4f5"/>
+<rect y="215" width="480" height="85" fill="#8db87a"/>
+<rect x="90" y="120" width="230" height="100" fill="#e9dcc3"/>
+<polygon points="75,122 205,60 335,122" fill="#7a4e3a"/>
+<rect x="320" y="150" width="100" height="70" fill="#d9ccb0"/>
+<polygon points="312,152 370,118 428,152" fill="#6a4331"/>
+<rect x="345" y="175" width="50" height="45" fill="#8a8f98"/>
+<rect x="115" y="145" width="42" height="40" fill="#8fb6d6" stroke="#fff" stroke-width="3"/>
+<rect x="235" y="145" width="42" height="40" fill="#8fb6d6" stroke="#fff" stroke-width="3"/>
+<rect x="180" y="160" width="36" height="60" fill="#5b3a29"/>
+<path d="M175 300 L190 220 L205 220 L260 300 Z" fill="#c9c4bb"/>
+<circle cx="50" cy="190" r="26" fill="#5e9a54"/><rect x="47" y="205" width="6" height="14" fill="#6b4a32"/>
+</svg>

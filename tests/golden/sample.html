@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample Residential Valuation Summary</title>
+<style>
+:root{--ink:#1d2330;--muted:#5b6475;--line:#d5d9e2;--accent:#1f4e79;--warn:#9a3412;--warnbg:#fff1e6;
+--panel:rgba(255,255,255,.72);--panelb:rgba(255,255,255,.9)}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.5 "Segoe UI",Arial,sans-serif;color:var(--ink);
+background:radial-gradient(1100px 600px at 12% -5%,#ffd9b0 0,transparent 60%),
+radial-gradient(900px 600px at 95% 8%,#f6b8c4 0,transparent 55%),
+radial-gradient(1000px 700px at 50% 105%,#b9d3f0 0,transparent 60%),#f4e9de;background-attachment:fixed}
+.wrap{max-width:1040px;margin:0 auto;padding:24px 16px 60px}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding:0}
+nav a{padding:5px 12px;border-radius:999px;background:var(--panel);backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.7);color:var(--accent);text-decoration:none;font-size:12px}
+section,.banner,header.top{background:var(--panel);backdrop-filter:blur(14px) saturate(1.2);
+-webkit-backdrop-filter:blur(14px) saturate(1.2);border:1px solid rgba(255,255,255,.75);
+border-radius:16px;padding:18px 22px;margin:0 0 16px;box-shadow:0 8px 28px rgba(60,40,20,.10)}
+.banner{background:var(--warnbg);border:2px solid var(--warn);color:var(--warn);font-weight:600}
+.banner strong{display:block;text-transform:uppercase;letter-spacing:.06em;font-size:12px;margin-bottom:4px}
+h1{margin:0 0 4px;font-size:26px}
+h2{margin:0 0 10px;font-size:16px;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;
+border-bottom:1px solid var(--line);padding-bottom:6px}
+h3{margin:14px 0 6px;font-size:14px}
+.sub{color:var(--muted);margin:0}
+.value{display:flex;flex-wrap:wrap;gap:24px;align-items:baseline;margin-top:12px}
+.value .big{font-size:34px;font-weight:700;color:var(--accent)}
+.value .lbl{font-size:11px;text-transform:uppercase;color:var(--muted);letter-spacing:.05em}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:rgba(31,78,121,.08);font-weight:600}
+.kv th{width:32%;background:none;font-weight:600;color:var(--muted)}
+.grid{overflow-x:auto}
+.grid td,.grid th{text-align:right;white-space:normal}
+.grid td:first-child,.grid th:first-child{text-align:left;font-weight:600;min-width:150px}
+.grid .subj{background:rgba(31,78,121,.07)}
+.grid tr.adjustment td:first-child{font-weight:400;padding-left:18px;color:var(--muted)}
+.grid tr.total td{font-weight:700;border-top:2px solid var(--ink)}
+.flag-on{color:var(--warn);font-weight:700;background:var(--warnbg)}
+.warnlist{margin:0;padding-left:18px;color:var(--warn)}
+.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+figure{margin:0}
+figure img{width:100%;border-radius:8px;border:1px solid var(--line);display:block}
+figcaption{font-size:12px;color:var(--muted);margin-top:3px}
+.map{border:2px dashed var(--line);border-radius:10px;padding:36px 12px;text-align:center;color:var(--muted)}
+.map img{max-width:100%}
+ol,ul{margin:6px 0;padding-left:22px}
+.small{font-size:12px;color:var(--muted)}
+.num{text-align:right}
+footer{font-size:12px;color:var(--muted);text-align:center}
+@media (max-width:640px){section,.banner,header.top{padding:14px 14px}h1{font-size:21px}.value .big{font-size:27px}}
+@media print{
+body{background:#fff;font-size:11px}
+.wrap{max-width:none;padding:0}
+nav{display:none}
+section,.banner,header.top{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;
+border-radius:0;border:0;border-bottom:1px solid var(--line);padding:8px 0;margin:0 0 8px}
+.banner{border:2px solid var(--warn);padding:8px 10px}
+h2,h3{break-after:avoid}
+tr,figure{break-inside:avoid}
+.grid{overflow:visible}
+table{font-size:10px}
+th,td{padding:3px 5px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav aria-label="Sections">
+<a href="#summary">Summary</a><a href="#subject">Subject</a><a href="#area">Neighborhood and market</a>
+<a href="#photos">Photos and map</a><a href="#sales">Sales comparison</a>
+<a href="#cost">Cost</a><a href="#income">Income</a><a href="#reconciliation">Reconciliation</a><a href="#scope">Scope and limits</a>
+</nav>
+
+<div class="banner" role="note">
+<strong>Not an appraisal. Not USPAP.</strong>
+This is an analysis and education product. It is NOT an appraisal and was NOT prepared under USPAP. A USPAP-compliant appraisal requires a licensed or certified appraiser.
+</div>
+
+<header class="top" id="summary">
+<h1>Sample Residential Valuation Summary</h1>
+<p class="sub">412 Sample Ridge Road, Exampleton, Demo County, KY 00000</p>
+<p class="sub">Evaluation style summary
+ | Effective date 2026-10-15 | Prepared by Example Valuation Services (synthetic sample)</p>
+<div class="value">
+<div><div class="lbl">Opinion of value (analysis estimate)</div><div class="big">$218,000</div></div>
+<div><div class="lbl">Range</div><div>$211,000 to $227,000</div></div>
+<div><div class="lbl">Premise</div><div>Market value, as is, fee simple (analysis estimate)</div></div>
+</div>
+<table class="kv" style="margin-top:12px">
+<tr><th>Intended use</th><td>Demonstrate the report layout and the checks. Not for lending, tax or legal use.</td></tr>
+<tr><th>Intended user</th><td>Readers of this repository</td></tr>
+</table>
+<h3>Review flags</h3>
+<ul class="warnlist">
+<li>comparable_sales.4 (5): net adjustment +21.7% is over the 15% flag level</li>
+<li>comparable_sales.4 (5): gross adjustment 25.5% is over the 25% flag level</li>
+</ul>
+</header>
+
+<section id="subject">
+<h2>Subject property</h2>
+<table class="kv">
+<tr><th>Address</th><td>412 Sample Ridge Road, Exampleton, Demo County, KY 00000</td></tr>
+<tr><th>Property type</th><td>Single-family detached, one story</td></tr>
+<tr><th>Legal description</th><td>Lot 12, Block B, Sample Ridge Subdivision (synthetic)</td></tr><tr><th>Year built</th><td>1998</td></tr>
+<tr><th>Gross living area</th><td>1,640 sq ft</td></tr>
+<tr><th>Bedrooms / baths</th><td>3 / 2</td></tr>
+<tr><th>Lot</th><td>0.62 acres</td></tr>
+<tr><th>Garage</th><td>2-car attached</td></tr>
+<tr><th>Condition</th><td>C3 (average, normal wear)</td></tr>
+<tr><th>Quality</th><td>Q4 (standard construction)</td></tr><tr><th>Zoning</th><td>R-1 residential (synthetic)</td></tr><tr><th>Occupancy</th><td>Owner occupied (assumed)</td></tr></table>
+<h3>Site</h3>
+<table class="kv">
+<tr><th>Size</th><td>0.62 acres, about 27,000 sq ft</td></tr>
+<tr><th>Shape</th><td>Rectangular, slight rise toward the rear</td></tr><tr><th>Topography</th><td>Gently sloping</td></tr><tr><th>Utilities</th><td>Public water, septic, electric, broadband available</td></tr><tr><th>Flood zone</th><td>Zone X, outside the mapped flood hazard area (assumed for this sample)</td></tr><tr><th>Access</th><td>Paved county road, driveway on the east side</td></tr><tr><th>Easements</th><td>Typical utility easement along the front, none adverse noted</td></tr></table>
+<h3>Improvements</h3>
+<table class="kv">
+<tr><th>Foundation</th><td>Poured concrete, crawl space</td></tr>
+<tr><th>Exterior walls</th><td>Vinyl siding</td></tr>
+<tr><th>Roof</th><td>Asphalt shingle, about 8 years old</td></tr>
+<tr><th>Heating and cooling</th><td>Heat pump, central air</td></tr>
+<tr><th>Interior</th><td>Drywall, laminate and carpet floors, updated kitchen counters</td></tr>
+<tr><th>Other</th><td>Covered rear porch, 12 x 16 storage shed</td></tr>
+</table>
+</section>
+
+<section id="area">
+<h2>Neighborhood and market conditions</h2>
+<p>Established residential area of single-family homes on one-half to one acre lots, ten minutes from the synthetic town center. Mostly owner occupied, with stable maintenance levels and no new construction in the last two years.</p>
+<p class="small">Boundaries: County road to the north, creek to the south, Demo Pike to the east and west</p><ul>
+<li>Schools and shopping within a 10 minute drive</li>
+<li>No adverse land uses nearby</li>
+<li>Limited supply of homes under 2,000 sq ft on larger lots</li>
+</ul><h3>Market conditions</h3>
+<table class="kv">
+<tr><th>Trend</th><td>Stable</td></tr>
+<tr><th>Annual price change</th><td>+2.4%</td></tr><tr><th>Median days on market</th><td>47</td></tr><tr><th>Months of supply</th><td>3.8</td></tr></table>
+<p>Prices rose slowly over the last 12 months. Supply is tight but buyers are price sensitive, so well kept homes at the market price sell in 6 to 8 weeks. Market conditions adjustments of $2,000 (comp 2) and $4,500 (comp 4) were made to the older sales.</p>
+</section>
+
+<section id="photos" class="breakable">
+<h2>Photos and map</h2>
+<div class="photos">
+<figure><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgMzAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkRyYXdpbmcgb2YgYSBvbmUgc3RvcnkgaG91c2UiPgo8cmVjdCB3aWR0aD0iNDgwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2NmZTRmNSIvPgo8cmVjdCB5PSIyMTUiIHdpZHRoPSI0ODAiIGhlaWdodD0iODUiIGZpbGw9IiM4ZGI4N2EiLz4KPHJlY3QgeD0iOTAiIHk9IjEyMCIgd2lkdGg9IjIzMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNlOWRjYzMiLz4KPHBvbHlnb24gcG9pbnRzPSI3NSwxMjIgMjA1LDYwIDMzNSwxMjIiIGZpbGw9IiM3YTRlM2EiLz4KPHJlY3QgeD0iMzIwIiB5PSIxNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNzAiIGZpbGw9IiNkOWNjYjAiLz4KPHBvbHlnb24gcG9pbnRzPSIzMTIsMTUyIDM3MCwxMTggNDI4LDE1MiIgZmlsbD0iIzZhNDMzMSIvPgo8cmVjdCB4PSIzNDUiIHk9IjE3NSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjOGE4Zjk4Ii8+CjxyZWN0IHg9IjExNSIgeT0iMTQ1IiB3aWR0aD0iNDIiIGhlaWdodD0iNDAiIGZpbGw9IiM4ZmI2ZDYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxyZWN0IHg9IjIzNSIgeT0iMTQ1IiB3aWR0aD0iNDIiIGhlaWdodD0iNDAiIGZpbGw9IiM4ZmI2ZDYiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxyZWN0IHg9IjE4MCIgeT0iMTYwIiB3aWR0aD0iMzYiIGhlaWdodD0iNjAiIGZpbGw9IiM1YjNhMjkiLz4KPHBhdGggZD0iTTE3NSAzMDAgTDE5MCAyMjAgTDIwNSAyMjAgTDI2MCAzMDAgWiIgZmlsbD0iI2M5YzRiYiIvPgo8Y2lyY2xlIGN4PSI1MCIgY3k9IjE5MCIgcj0iMjYiIGZpbGw9IiM1ZTlhNTQiLz48cmVjdCB4PSI0NyIgeT0iMjA1IiB3aWR0aD0iNiIgaGVpZ2h0PSIxNCIgZmlsbD0iIzZiNGEzMiIvPgo8L3N2Zz4K" alt="Front elevation (synthetic drawing, not a photo)"><figcaption>Front elevation (synthetic drawing, not a photo)</figcaption></figure>
+<figure><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgMzAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkRyYXdpbmcgb2YgYSByZXNpZGVudGlhbCBzdHJlZXQiPgo8cmVjdCB3aWR0aD0iNDgwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2RjZWJmNyIvPgo8cmVjdCB5PSIxOTAiIHdpZHRoPSI0ODAiIGhlaWdodD0iMTEwIiBmaWxsPSIjOGRiODdhIi8+Cjxwb2x5Z29uIHBvaW50cz0iMTUwLDMwMCAzMzAsMzAwIDI2MiwxOTAgMjE4LDE5MCIgZmlsbD0iIzhjOGY5NiIvPgo8cmVjdCB4PSIyMzgiIHk9IjE5MCIgd2lkdGg9IjQiIGhlaWdodD0iMTEwIiBmaWxsPSIjZjJlNmE2IiB0cmFuc2Zvcm09InNrZXdYKC0yKSIvPgo8cmVjdCB4PSIyMCIgeT0iMTMwIiB3aWR0aD0iMTEwIiBoZWlnaHQ9IjY1IiBmaWxsPSIjZTRkNmJiIi8+PHBvbHlnb24gcG9pbnRzPSIxMCwxMzIgNzUsODggMTQwLDEzMiIgZmlsbD0iIzdhNGUzYSIvPgo8cmVjdCB4PSIzNTAiIHk9IjE0MCIgd2lkdGg9IjExMCIgaGVpZ2h0PSI1NSIgZmlsbD0iI2Q3Y2RiOCIvPjxwb2x5Z29uIHBvaW50cz0iMzQwLDE0MiA0MDUsMTAyIDQ3MCwxNDIiIGZpbGw9IiM2YTQzMzEiLz4KPGNpcmNsZSBjeD0iMTcwIiBjeT0iMTY1IiByPSIyMiIgZmlsbD0iIzVlOWE1NCIvPjxyZWN0IHg9IjE2NyIgeT0iMTgwIiB3aWR0aD0iNiIgaGVpZ2h0PSIxNCIgZmlsbD0iIzZiNGEzMiIvPgo8Y2lyY2xlIGN4PSIzMjAiIGN5PSIxNjgiIHI9IjIwIiBmaWxsPSIjNWU5YTU0Ii8+PHJlY3QgeD0iMzE3IiB5PSIxODIiIHdpZHRoPSI2IiBoZWlnaHQ9IjEyIiBmaWxsPSIjNmI0YTMyIi8+Cjwvc3ZnPgo=" alt="Street scene (synthetic drawing, not a photo)"><figcaption>Street scene (synthetic drawing, not a photo)</figcaption></figure>
+</div>
+<h3>Location map</h3>
+<div class="map">Map placeholder. Add a map image with the <code>map_image</code> field. No map is generated and no geocoding is done.</div>
+</section>
+
+<section id="sales" class="breakable">
+<h2>Sales comparison approach</h2>
+<div class="grid">
+<table>
+<thead><tr><th>Item</th><th class="subj">Subject</th>
+<th>Comp 1</th><th>Comp 2</th><th>Comp 3</th><th>Comp 4</th><th>Comp 5</th></tr></thead>
+<tbody>
+<tr class="plain"><td>Address</td><td class="subj">412 Sample Ridge Road, Exampleton, Demo County, KY 00000</td>
+<td>118 Example Lane, Exampleton</td><td>77 Sample Court, Exampleton</td><td>305 Placeholder Way, Exampleton</td><td>29 Demo Hollow, Exampleton</td><td>9 Fictional Row, Exampleton</td></tr>
+<tr class="plain"><td>Proximity to subject</td><td class="subj"></td>
+<td>0.4 mi N</td><td>0.9 mi E</td><td>1.3 mi S</td><td>1.8 mi W</td><td>2.6 mi NW</td></tr>
+<tr class="plain"><td>Data source</td><td class="subj"></td>
+<td>Synthetic MLS record</td><td>Synthetic MLS record</td><td>Synthetic MLS record</td><td>Synthetic MLS record</td><td>Synthetic MLS record</td></tr>
+<tr class="plain"><td>Sale price</td><td class="subj"></td>
+<td>$214,000</td><td>$236,500</td><td>$205,000</td><td>$228,000</td><td>$182,000</td></tr>
+<tr class="plain"><td>Sale date</td><td class="subj"></td>
+<td>2026-08-14</td><td>2026-06-02</td><td>2026-09-20</td><td>2026-03-27</td><td>2026-05-08</td></tr>
+<tr class="plain"><td>Gross living area (sq ft)</td><td class="subj">1,640</td>
+<td>1,580</td><td>1,720</td><td>1,600</td><td>1,700</td><td>1,350</td></tr>
+<tr class="plain"><td>Price per sq ft</td><td class="subj"></td>
+<td>$135</td><td>$138</td><td>$128</td><td>$134</td><td>$135</td></tr>
+<tr class="plain"><td>Lot (acres)</td><td class="subj">0.62</td>
+<td>0.55</td><td>0.70</td><td>0.48</td><td>0.75</td><td>0.30</td></tr>
+<tr class="plain"><td>Year built</td><td class="subj">1998</td>
+<td>1995</td><td>2003</td><td>1992</td><td>2001</td><td>1978</td></tr>
+<tr class="plain"><td>Condition</td><td class="subj">C3 (average, normal wear)</td>
+<td>C3</td><td>C2</td><td>C4</td><td>C3</td><td>C4</td></tr>
+<tr class="plain"><td>Bedrooms / baths</td><td class="subj">3 / 2</td>
+<td>3 / 2</td><td>3 / 2.5</td><td>3 / 2</td><td>3 / 2</td><td>2 / 1</td></tr>
+<tr class="plain"><td>Garage</td><td class="subj">2-car attached</td>
+<td>2-car attached</td><td>2-car attached</td><td>1-car attached</td><td>2-car attached</td><td>None</td></tr>
+<tr class="adjustment"><td>Adj: Living area</td><td class="subj"></td>
+<td>+$3,000</td><td>-$4,000</td><td>+$2,000</td><td>-$3,000</td><td>+$14,500</td></tr>
+<tr class="adjustment"><td>Adj: Lot size</td><td class="subj"></td>
+<td>+$2,000</td><td>-$1,500</td><td>+$2,800</td><td>-$2,000</td><td>+$6,000</td></tr>
+<tr class="adjustment"><td>Adj: Bathrooms</td><td class="subj"></td>
+<td>-</td><td>-$2,500</td><td>-</td><td>-</td><td>+$4,000</td></tr>
+<tr class="adjustment"><td>Adj: Age and condition</td><td class="subj"></td>
+<td>-</td><td>-$4,000</td><td>-$3,000</td><td>-</td><td>+$14,000</td></tr>
+<tr class="adjustment"><td>Adj: Market conditions</td><td class="subj"></td>
+<td>-</td><td>+$2,000</td><td>-</td><td>+$4,500</td><td>-</td></tr>
+<tr class="adjustment"><td>Adj: Garage</td><td class="subj"></td>
+<td>-</td><td>-</td><td>+$4,500</td><td>-</td><td>+$4,500</td></tr>
+<tr class="adjustment"><td>Adj: Location</td><td class="subj"></td>
+<td>-</td><td>-</td><td>-</td><td>-</td><td>-$3,500</td></tr>
+<tr class="total"><td>Net adjustment</td><td class="subj"></td>
+<td>+$5,000</td><td>-$10,000</td><td>+$6,300</td><td>-$500</td><td>+$39,500</td></tr>
+<tr class="flag"><td>Net adjustment %</td><td class="subj"></td>
+<td>+2.3%</td><td>-4.2%</td><td>+3.1%</td><td>-0.2%</td><td class="flag-on">+21.7% (flag)</td></tr>
+<tr class="flag"><td>Gross adjustment %</td><td class="subj"></td>
+<td>2.3%</td><td>5.9%</td><td>6.0%</td><td>4.2%</td><td class="flag-on">25.5% (flag)</td></tr>
+<tr class="total"><td>Adjusted price</td><td class="subj"></td>
+<td>$219,000</td><td>$226,500</td><td>$211,300</td><td>$227,500</td><td>$221,500</td></tr>
+<tr class="plain"><td>Adjusted price per sq ft</td><td class="subj"></td>
+<td>$139</td><td>$132</td><td>$132</td><td>$134</td><td>$164</td></tr>
+<tr class="plain"><td>Weight in indication</td><td class="subj"></td>
+<td>1</td><td>1</td><td>1</td><td>1</td><td>0.5</td></tr>
+</tbody>
+</table>
+</div>
+<p class="small">Flag levels: net adjustment over 15% or gross adjustment over 25% of the sale price. Adjustments are analyst inputs, not market-extracted unless the narrative says so.</p>
+<p><strong>Weighted indication from sales comparison: $221,122</strong></p>
+</section>
+
+<section id="cost">
+<h2>Cost approach</h2>
+<table>
+<thead><tr><th>Item</th><th class="num">Quantity</th><th class="num">Unit cost</th><th class="num">Cost</th></tr></thead>
+<tbody>
+<tr><td>Dwelling</td><td class="num">1,640 sq ft</td><td class="num">$118</td><td class="num">$193,520</td></tr>
+<tr><td>Attached garage</td><td class="num">440 sq ft</td><td class="num">$42</td><td class="num">$18,480</td></tr>
+<tr><td>Porch, shed and site work</td><td class="num">1 lump sum</td><td class="num">$11,000</td><td class="num">$11,000</td></tr>
+<tr><td colspan="3"><strong>Replacement cost new</strong></td><td class="num"><strong>$223,000</strong></td></tr>
+<tr><td colspan="3">Physical depreciation (22%)</td><td class="num">-$49,060</td></tr>
+<tr><td colspan="3">Functional obsolescence</td><td class="num">$-0</td></tr>
+<tr><td colspan="3">External obsolescence</td><td class="num">$-0</td></tr>
+<tr><td colspan="3">Depreciated improvements</td><td class="num">$173,940</td></tr>
+<tr><td colspan="3">Land value (synthetic lot sales, extraction not shown)</td><td class="num">$38,000</td></tr>
+<tr><td colspan="3"><strong>Indicated value, cost approach</strong></td><td class="num"><strong>$211,940</strong></td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="income">
+<h2>Income approach (gross rent multiplier)</h2>
+<table>
+<thead><tr><th>Rental comp</th><th>Address</th><th class="num">Sale price</th><th class="num">Monthly rent</th><th class="num">GRM</th></tr></thead>
+<tbody>
+<tr><td>R1</td><td>14 Rental Lane (synthetic)</td><td class="num">$198,000</td><td class="num">$1,300</td><td class="num">152.3</td></tr>
+<tr><td>R2</td><td>52 Lease Court (synthetic)</td><td class="num">$221,000</td><td class="num">$1,425</td><td class="num">155.1</td></tr>
+<tr><td>R3</td><td>3 Tenant Trail (synthetic)</td><td class="num">$186,000</td><td class="num">$1,250</td><td class="num">148.8</td></tr>
+<tr><td>R4</td><td>88 Landlord Loop (synthetic)</td><td class="num">$240,000</td><td class="num">$1,500</td><td class="num">160.0</td></tr>
+</tbody>
+</table>
+<p>GRM range 148.8 to 160.0, median 153.7. Selected GRM 155.0.</p>
+<p><strong>Indicated value: $1,350 monthly market rent x 155.0 = $209,250</strong></p>
+</section>
+
+<section id="reconciliation">
+<h2>Reconciliation</h2>
+<table>
+<thead><tr><th>Approach</th><th class="num">Indicated value</th><th class="num">Weight</th></tr></thead>
+<tbody>
+<tr><td>Sales comparison</td><td class="num">$221,122</td><td class="num">70%</td></tr>
+<tr><td>Cost</td><td class="num">$211,940</td><td class="num">20%</td></tr>
+<tr><td>Income (GRM)</td><td class="num">$209,250</td><td class="num">10%</td></tr>
+<tr><td><strong>Weighted value</strong></td><td class="num"><strong>$218,099</strong></td><td></td></tr>
+<tr><td><strong>Opinion of value (analysis estimate)</strong></td><td class="num"><strong>$218,000</strong></td><td></td></tr>
+</tbody>
+</table>
+<p>The sales comparison approach is given the most weight because buyers in this market compare recent sales of similar homes. Comps 1, 3 and 4 needed the smallest adjustments. Comp 5 needed large adjustments, which are flagged above, so it carries half weight. The cost and rent multiplier approaches indicate about $209,000 to $212,000 and pull the opinion slightly below the sales indication. They are cross checks only, because buyers here rarely buy for rent or price off construction cost.</p>
+</section>
+
+<section id="scope" class="breakable">
+<h2>Scope of work</h2>
+<p>Desktop analysis of the subject using the data in this file. No inspection was made. Comparable sales are synthetic records chosen for the demo. The sales comparison approach carries most of the weight; the cost and income (gross rent multiplier) approaches are support. Adjustments are the analyst&#39;s inputs for this sample.</p>
+<h2 style="margin-top:18px">Assumptions and limiting conditions</h2>
+<h3>Assumptions</h3><ol>
+<li>The subject is as described in this file; no inspection was made.</li>
+<li>Title is marketable and there are no hidden easements or liens.</li>
+<li>Utilities and mechanical systems are in working order.</li>
+<li>Data in this sample is invented and is not verified against any public record.</li>
+</ol><h3>Limiting conditions</h3><ol>
+<li>This report is for the stated use and user only.</li>
+<li>Values are estimates for a stated date and can change with the market.</li>
+<li>No environmental, structural, mold or flood review was done.</li>
+<li>The preparer has no interest in the subject, and no one is paid based on the value found.</li>
+</ol><h3>Not a USPAP appraisal</h3>
+<p>This is an analysis and education product. It is NOT an appraisal and was NOT prepared under USPAP. A USPAP-compliant appraisal requires a licensed or certified appraiser. The preparer of this report does not certify compliance with USPAP, and no signed appraiser certification is included.</p>
+</section>
+
+<footer>Example Valuation Services (synthetic sample) | Generated by Chase Builds valuation-report-builder | This is an analysis and education product. It is NOT an appraisal and was NOT prepared under USPAP. A USPAP-compliant appraisal requires a licensed or certified appraiser.</footer>
+</div>
+</body>
+</html>
