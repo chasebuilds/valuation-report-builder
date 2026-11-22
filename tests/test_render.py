@@ -47,7 +47,7 @@ def test_html_is_deterministic_and_self_contained() -> None:
 
 
 def test_no_em_dash_in_output() -> None:
-    assert "—" not in sample_html()
+    assert chr(0x2014) not in sample_html()
 
 
 def test_html_escapes_input() -> None:
