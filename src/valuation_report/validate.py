@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import statistics
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -16,6 +17,7 @@ MIN_COMPS = 3
 MONEY_TOLERANCE = 1.0
 WEIGHT_TOLERANCE = 0.001
 STALE_SALE_DAYS = 365
+SPREAD_WARN_PCT = 15.0
 OPINION_DRIFT_PCT = 3.0
 ROUNDING_SLACK = 0.01  # an opinion may be rounded up to 1% past the indications
 
@@ -108,8 +110,18 @@ def _check_comps(r: Report, out: ValidationResult) -> None:
                 f"{where}: gross adjustment {c.gross_pct:.1f}% is over the "
                 f"{r.thresholds.gross_pct:.0f}% flag level"
             )
-    if all(c.weight == 0 for c in r.comparable_sales):
+    weighted = [c.adjusted_price for c in r.comparable_sales if c.weight > 0]
+    if not weighted:
         out.errors.append("comparable_sales: at least one comp needs a weight above 0")
+    elif len(weighted) >= MIN_COMPS:
+        mid = statistics.median(weighted)
+        spread = (max(weighted) - min(weighted)) / mid * 100
+        if spread > SPREAD_WARN_PCT:
+            out.warnings.append(
+                f"comparable_sales: adjusted prices span {spread:.1f}% of the median "
+                f"({_money(min(weighted))} to {_money(max(weighted))}). "
+                f"Check the adjustments or drop outliers"
+            )
 
 
 def _check_cost(r: Report, out: ValidationResult) -> None:

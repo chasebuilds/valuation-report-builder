@@ -3,19 +3,23 @@
 [![ci](https://github.com/chasebuilds/valuation-report-builder/actions/workflows/ci.yml/badge.svg)](https://github.com/chasebuilds/valuation-report-builder/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Turn one YAML or JSON file into a clean property valuation summary, as HTML and PDF.
-It checks the input first and stops with plain errors if the math or the data does not hold up.
+**Turn one YAML or JSON file into a clean property valuation summary (HTML and PDF), and stop
+with plain errors when the comps or the math do not hold up.**
+
+[**Live demo**](https://chasebuilds.github.io/valuation-report-builder/) | [Sample PDF](examples/sample_report.pdf) (5 pages, synthetic data) | [Benchmark](BENCHMARK.md)
+
+![Report summary](docs/screenshot-summary.png)
+
+Good for: appraisal and brokerage offices that want consistent reports and fewer arithmetic
+mistakes, and county offices that want a checked, readable summary from a spreadsheet of comps.
 
 > **Not an appraisal.** This is an analysis and education tool. It does not produce a USPAP
 > appraisal, and it does not copy any Fannie Mae or Freddie Mac form. A USPAP-compliant appraisal
 > requires a licensed or certified appraiser. Every report this tool writes says so on the first
 > page, in the footer of every PDF page, and in the limiting conditions.
 
-**Live demo:** https://chasebuilds.github.io/valuation-report-builder/
-**Sample PDF:** [examples/sample_report.pdf](examples/sample_report.pdf) (5 pages, all synthetic data)
-
-![Report summary](docs/screenshot-summary.png)
-![Sales comparison grid](docs/screenshot-grid.png)
+New in 0.2: load comps from a spreadsheet CSV, export the computed numbers as JSON, and a warning
+when comp adjusted prices spread too far apart.
 
 ## What it makes
 
@@ -29,6 +33,8 @@ An evaluation or broker price opinion style summary with:
 - reconciliation with weights, opinion of value and range
 - scope of work, assumptions and limiting conditions
 - a prominent "not a USPAP appraisal" statement
+
+![Sales comparison grid](docs/screenshot-grid.png)
 
 The HTML is one self-contained file. On screen it uses a soft frosted-glass look. When printed
 or saved to PDF it switches to a plain white layout.
@@ -49,6 +55,22 @@ Why Playwright and not WeasyPrint: WeasyPrint needs GTK libraries that do not in
 Windows. Playwright prints the PDF with Chromium and works on Windows and in CI. It tries
 Playwright's Chromium first, then installed Edge, then Chrome. Pick one with `--browser msedge`
 or the `VRB_BROWSER_CHANNEL` environment variable.
+
+## Comps from a spreadsheet, results as JSON
+
+Keep comps in Excel or Sheets, export CSV, and point the build at it. The CSV replaces
+`comparable_sales` in the YAML. See [examples/comps.csv](examples/comps.csv).
+
+```powershell
+.venv\Scripts\python -m valuation_report.cli build examples/sample_property.yaml --comps-csv examples/comps.csv --html out/report.html --json out/results.json
+```
+
+- One row per comp. Columns use the field names (`id`, `address`, `sale_price`, `sale_date`, ...).
+- Adjustments are `adj:<label>` columns, for example `adj:Living area`. Blank means none.
+- Money may be written `$214,000`, and `(2500)` means -2500. A BOM from Excel is fine.
+- Bad cells stop with the row and column, for example `row 3, column 'sale_price': 'abc' is not a number`.
+- `--json` writes the opinion, range, indications, weights, each comp's net and gross adjustment,
+  adjusted price and flags, and the warnings. Use it to feed a spreadsheet or another tool.
 
 ## Input
 
@@ -76,6 +98,7 @@ Errors stop the build and nothing is written:
 Warnings do not stop the build. They print in the terminal and in a "Review flags" box in the report:
 
 - net adjustment over 15% or gross adjustment over 25% of a comp's sale price (change with `thresholds`)
+- adjusted prices of the weighted comps spanning more than 15% of their median
 - a comp sale more than 12 months before the effective date
 - an opinion of value more than 3% away from the weighted value
 
@@ -87,7 +110,7 @@ Warnings do not stop the build. They print in the terminal and in a "Review flag
 .venv\Scripts\python -m mypy
 ```
 
-40 tests: schema validation, every error and warning above, the adjustment, cost, income and
+54 tests: schema validation, every error and warning above, CSV import and JSON export, the adjustment, cost, income and
 reconciliation math, a golden-file test on the sample HTML (`UPDATE_GOLDEN=1 pytest` rewrites it
 after a deliberate template change), HTML escaping, the CLI, and a PDF render. CI runs ruff,
 ruff format, mypy in strict mode and pytest on Python 3.11 and 3.13.

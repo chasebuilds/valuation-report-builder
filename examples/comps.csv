@@ -1,0 +1,6 @@
+id,address,proximity,sale_price,sale_date,data_source,gla_sqft,lot_acres,year_built,condition,bedrooms,bathrooms,garage,weight,adj:Living area,adj:Lot size,adj:Bathrooms,adj:Age and condition,adj:Market conditions,adj:Garage,adj:Location,stated_adjusted_price
+1,"118 Example Lane, Exampleton",0.4 mi N,"$214,000",2026-08-14,Synthetic MLS record,1580,0.55,1995,C3,3,2,2-car attached,1,3000,2000,,,,,,219000
+2,"77 Sample Court, Exampleton",0.9 mi E,"$236,500",2026-06-02,Synthetic MLS record,1720,0.70,2003,C2,3,2.5,2-car attached,1,-4000,-1500,-2500,-4000,2000,,,226500
+3,"305 Placeholder Way, Exampleton",1.3 mi S,"$205,000",2026-09-20,Synthetic MLS record,1600,0.48,1992,C4,3,2,1-car attached,1,2000,2800,,-3000,,4500,,211300
+4,"29 Demo Hollow, Exampleton",1.8 mi W,"$228,000",2026-03-27,Synthetic MLS record,1700,0.75,2001,C3,3,2,2-car attached,1,-3000,-2000,,,4500,,,
+5,"9 Fictional Row, Exampleton",2.6 mi NW,"$182,000",2026-05-08,Synthetic MLS record,1350,0.30,1978,C4,2,1,None,0.5,14500,6000,4000,14000,,4500,-3500,
