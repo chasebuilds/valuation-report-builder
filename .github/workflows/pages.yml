@@ -30,6 +30,8 @@ jobs:
           mkdir site
           python -m valuation_report.cli build examples/sample_property.yaml --html site/index.html
           cp examples/sample_report.pdf site/sample_report.pdf
+      - name: Page title, description and share preview
+        run: python3 demo/page_meta.py site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

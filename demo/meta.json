@@ -1,0 +1,7 @@
+{
+  "title": "Valuation Report Builder: One input file to PDF and HTML | Chase Builds",
+  "description": "Property valuation report generator: one YAML or JSON input becomes a PDF and an HTML report with a sales grid and adjustments. Not a USPAP appraisal.",
+  "url": "https://chasebuilds.github.io/valuation-report-builder/",
+  "image": "docs/screenshot-summary.png",
+  "repo": "valuation-report-builder"
+}
